@@ -1,1 +1,1460 @@
-test
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Troy Detail Co. — Premium Mobile Detailing · Austin, TX</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<!-- QR code library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+:root {
+  --aegean:    #0D2133;
+  --aegean-md: #163D56;
+  --aegean-lt: #1E5270;
+  --teal:      #2ABFAA;
+  --teal-lt:   #4DD9C5;
+  --teal-dim:  rgba(42,191,170,0.15);
+  --cream:     #EDE0C4;
+  --cream-dim: rgba(237,224,196,0.55);
+  --cream-faint:rgba(237,224,196,0.12);
+  --dark:      #07141E;
+  --gold:      #C9A96E;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--dark);
+  color: var(--cream);
+  font-family: 'Cormorant Garamond', serif;
+  overflow-x: hidden;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--dark); }
+::-webkit-scrollbar-thumb { background: var(--teal); border-radius: 3px; }
+
+/* ── MEANDER PATTERN ── */
+.meander-strip {
+  height: 16px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='14'%3E%3Cpath d='M0,12 L0,2 L12,2 L12,7 L7,7 L7,12 L14,12 L14,2 L28,2' fill='none' stroke='%232ABFAA' stroke-width='1.2' stroke-linejoin='round' opacity='0.4'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-size: 28px 14px;
+  background-position: center;
+}
+.meander-strip.flip { transform: scaleY(-1); }
+
+/* ══════════════════════════════════
+   NAV
+══════════════════════════════════ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px;
+  height: 72px;
+  background: rgba(7,20,30,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(42,191,170,0.15);
+}
+
+.nav-logo {
+  display: flex; align-items: center; gap: 12px;
+  text-decoration: none;
+}
+.nav-logo-text {
+  font-family: 'Cinzel', serif;
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: 6px;
+  color: var(--cream);
+}
+.nav-logo-sub {
+  font-family: 'Cinzel', serif;
+  font-size: 7px;
+  letter-spacing: 3px;
+  color: var(--teal);
+  opacity: .7;
+  margin-top: 2px;
+}
+
+.nav-links {
+  display: flex; gap: 36px; list-style: none;
+}
+.nav-links a {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 2.5px;
+  color: var(--cream-dim);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color .3s;
+}
+.nav-links a:hover { color: var(--teal-lt); }
+
+.nav-cta {
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--dark);
+  background: var(--teal);
+  padding: 10px 22px;
+  border-radius: 2px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background .3s, transform .2s;
+}
+.nav-cta:hover { background: var(--teal-lt); transform: translateY(-1px); }
+
+/* ══════════════════════════════════
+   HERO
+══════════════════════════════════ */
+#hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  padding: 120px 24px 80px;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 30%, rgba(22,61,86,0.6) 0%, transparent 70%),
+    var(--dark);
+}
+
+/* Animated background grid */
+#hero::before {
+  content:'';
+  position:absolute; inset:0;
+  background-image:
+    linear-gradient(rgba(42,191,170,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(42,191,170,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: gridShift 20s linear infinite;
+  pointer-events: none;
+}
+@keyframes gridShift {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(60px); }
+}
+
+/* Glow orbs */
+#hero::after {
+  content:'';
+  position:absolute;
+  width:600px; height:600px;
+  border-radius:50%;
+  background: radial-gradient(circle, rgba(42,191,170,0.07) 0%, transparent 70%);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -60%);
+  pointer-events: none;
+}
+
+.hero-eyebrow {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 5px;
+  color: var(--teal);
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: fadeUp .8s .2s forwards;
+}
+
+.hero-helmet {
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: fadeUp .8s .3s forwards;
+  filter: drop-shadow(0 0 24px rgba(42,191,170,0.5));
+}
+
+.hero-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(52px, 10vw, 96px);
+  font-weight: 900;
+  letter-spacing: 20px;
+  color: var(--cream);
+  line-height: 1;
+  margin-bottom: 12px;
+  opacity: 0;
+  animation: fadeUp .8s .4s forwards;
+  text-shadow: 0 0 60px rgba(42,191,170,0.2);
+}
+
+.hero-sub {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(10px,2vw,13px);
+  letter-spacing: 5px;
+  color: var(--teal);
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: fadeUp .8s .5s forwards;
+}
+
+.hero-divider {
+  display: flex; align-items: center; gap: 12px;
+  justify-content: center;
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: fadeUp .8s .55s forwards;
+}
+.hero-divider-line { width: 60px; height: 1px; background: linear-gradient(90deg, transparent, rgba(42,191,170,0.4)); }
+.hero-divider-line.r { background: linear-gradient(90deg, rgba(42,191,170,0.4), transparent); }
+.hero-divider-diamond { width: 6px; height: 6px; background: var(--teal); transform: rotate(45deg); opacity: .7; }
+
+.hero-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(16px,3vw,22px);
+  color: var(--cream-dim);
+  margin-bottom: 48px;
+  opacity: 0;
+  animation: fadeUp .8s .6s forwards;
+  max-width: 520px;
+}
+
+.hero-btns {
+  display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
+  opacity: 0;
+  animation: fadeUp .8s .7s forwards;
+}
+
+.btn-primary {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--dark);
+  background: var(--teal);
+  padding: 16px 36px;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: all .3s;
+  border: 1px solid var(--teal);
+}
+.btn-primary:hover { background: var(--teal-lt); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(42,191,170,0.3); }
+
+.btn-ghost {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--cream);
+  background: transparent;
+  padding: 16px 36px;
+  border-radius: 2px;
+  text-decoration: none;
+  border: 1px solid rgba(237,224,196,0.3);
+  transition: all .3s;
+}
+.btn-ghost:hover { border-color: var(--teal); color: var(--teal); transform: translateY(-2px); }
+
+.hero-scroll {
+  position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  opacity: 0;
+  animation: fadeUp .8s 1.2s forwards;
+}
+.hero-scroll span {
+  font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 3px; color: var(--teal); opacity: .5;
+}
+.scroll-line {
+  width: 1px; height: 40px;
+  background: linear-gradient(180deg, rgba(42,191,170,0.5), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse { 0%,100% { opacity:.4; } 50% { opacity:1; } }
+
+@keyframes fadeUp {
+  from { opacity:0; transform: translateY(20px); }
+  to   { opacity:1; transform: translateY(0); }
+}
+
+/* ══════════════════════════════════
+   SECTION COMMONS
+══════════════════════════════════ */
+section { padding: 100px 24px; position: relative; }
+
+.section-inner { max-width: 1100px; margin: 0 auto; }
+
+.section-eyebrow {
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  letter-spacing: 5px;
+  color: var(--teal);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  display: block;
+}
+
+.section-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(28px,5vw,46px);
+  font-weight: 900;
+  color: var(--cream);
+  letter-spacing: 4px;
+  margin-bottom: 16px;
+  line-height: 1.1;
+}
+
+.section-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 18px;
+  color: var(--cream-dim);
+  max-width: 540px;
+  line-height: 1.7;
+}
+
+/* ══════════════════════════════════
+   WHY TROY
+══════════════════════════════════ */
+#why {
+  background: linear-gradient(180deg, var(--dark) 0%, var(--aegean) 100%);
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+  gap: 2px;
+  margin-top: 60px;
+  border: 1px solid rgba(42,191,170,0.12);
+}
+
+.why-card {
+  padding: 40px 32px;
+  background: rgba(13,33,51,0.6);
+  border: 1px solid rgba(42,191,170,0.08);
+  transition: background .3s, border-color .3s;
+  position: relative;
+  overflow: hidden;
+}
+.why-card::before {
+  content:'';
+  position:absolute; top:0; left:0; right:0;
+  height:2px;
+  background: linear-gradient(90deg, transparent, var(--teal), transparent);
+  opacity:0;
+  transition: opacity .3s;
+}
+.why-card:hover { background: rgba(22,61,86,0.4); border-color: rgba(42,191,170,0.2); }
+.why-card:hover::before { opacity:1; }
+
+.why-icon {
+  width: 40px; height: 40px;
+  margin-bottom: 20px;
+  stroke: var(--teal);
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.why-card h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: var(--cream);
+  margin-bottom: 12px;
+}
+
+.why-card p {
+  font-size: 15px;
+  color: var(--cream-dim);
+  line-height: 1.7;
+}
+
+/* ══════════════════════════════════
+   SERVICES / PRICING
+══════════════════════════════════ */
+#services {
+  background: var(--aegean);
+}
+
+.packages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+  gap: 24px;
+  margin-top: 60px;
+}
+
+.package-card {
+  border: 1px solid rgba(42,191,170,0.2);
+  border-radius: 4px;
+  overflow: hidden;
+  background: rgba(7,20,30,0.6);
+  transition: transform .3s, box-shadow .3s, border-color .3s;
+  position: relative;
+}
+.package-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 0 1px rgba(42,191,170,0.3);
+  border-color: rgba(42,191,170,0.4);
+}
+
+.package-card.featured {
+  border-color: var(--teal);
+  box-shadow: 0 0 0 1px rgba(42,191,170,0.4), 0 20px 50px rgba(42,191,170,0.1);
+}
+
+.package-badge {
+  position: absolute; top: 16px; right: 16px;
+  font-family: 'Cinzel', serif;
+  font-size: 7px;
+  letter-spacing: 2px;
+  color: var(--dark);
+  background: var(--teal);
+  padding: 4px 10px;
+  border-radius: 2px;
+}
+
+.package-header {
+  padding: 28px 28px 20px;
+  border-bottom: 1px solid rgba(42,191,170,0.1);
+}
+
+.package-num {
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: var(--teal);
+  margin-bottom: 8px;
+}
+
+.package-name {
+  font-family: 'Cinzel', serif;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: var(--cream);
+  margin-bottom: 14px;
+  line-height: 1.3;
+}
+
+.package-price {
+  display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap;
+}
+.price-from { font-size: 12px; color: var(--cream-dim); }
+.price-sedan {
+  font-family: 'Cinzel', serif;
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--teal-lt);
+}
+.price-sedan span { font-size: 13px; font-weight: 400; }
+.price-suv {
+  font-size: 13px;
+  color: var(--cream-dim);
+  margin-left: 4px;
+}
+
+.package-body { padding: 24px 28px 28px; }
+
+.package-item {
+  display: flex; align-items: flex-start; gap: 10px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: var(--cream-dim);
+  line-height: 1.4;
+}
+.package-item::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--teal);
+  flex-shrink: 0;
+  margin-top: 5px;
+  opacity: .7;
+}
+
+.package-cta {
+  display: block;
+  margin: 20px 28px 0;
+  padding: 13px;
+  text-align: center;
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: all .3s;
+}
+.package-cta.primary {
+  background: var(--teal); color: var(--dark);
+}
+.package-cta.primary:hover { background: var(--teal-lt); }
+.package-cta.ghost {
+  border: 1px solid rgba(42,191,170,0.35); color: var(--teal);
+}
+.package-cta.ghost:hover { background: var(--teal-dim); border-color: var(--teal); }
+
+/* ADD-ONS */
+.addons-section { margin-top: 60px; }
+.addons-title {
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  letter-spacing: 4px;
+  color: var(--cream);
+  margin-bottom: 24px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(42,191,170,0.15);
+}
+
+.addons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px,1fr));
+  gap: 12px;
+}
+
+.addon-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 14px 18px;
+  border: 1px solid rgba(42,191,170,0.1);
+  border-radius: 3px;
+  background: rgba(7,20,30,0.4);
+  transition: border-color .3s, background .3s;
+}
+.addon-row:hover { border-color: rgba(42,191,170,0.25); background: rgba(22,61,86,0.2); }
+
+.addon-name { font-size: 14px; color: var(--cream-dim); }
+.addon-price {
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  color: var(--teal-lt);
+  white-space: nowrap;
+  margin-left: 12px;
+}
+
+.addons-note {
+  margin-top: 16px;
+  font-style: italic;
+  font-size: 13px;
+  color: rgba(237,224,196,0.3);
+}
+
+/* ══════════════════════════════════
+   HOW IT WORKS
+══════════════════════════════════ */
+#how {
+  background: linear-gradient(180deg, var(--aegean) 0%, var(--dark) 100%);
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+  gap: 0;
+  margin-top: 60px;
+  position: relative;
+}
+
+.steps::before {
+  content:'';
+  position:absolute;
+  top: 32px; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(42,191,170,0.3) 20%, rgba(42,191,170,0.3) 80%, transparent);
+}
+
+.step {
+  padding: 0 32px;
+  text-align: center;
+  position: relative;
+}
+
+.step-num {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  border: 1px solid rgba(42,191,170,0.4);
+  background: var(--dark);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 24px;
+  font-family: 'Cinzel', serif;
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--teal);
+  position: relative; z-index: 1;
+}
+
+.step h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: var(--cream);
+  margin-bottom: 10px;
+}
+
+.step p {
+  font-size: 14px;
+  color: var(--cream-dim);
+  line-height: 1.7;
+}
+
+/* ══════════════════════════════════
+   BOOKING FORM
+══════════════════════════════════ */
+#booking {
+  background: var(--dark);
+  border-top: 1px solid rgba(42,191,170,0.1);
+}
+
+.booking-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+  margin-top: 60px;
+}
+
+@media (max-width: 768px) {
+  .booking-wrap { grid-template-columns: 1fr; gap: 48px; }
+  nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  .steps::before { display: none; }
+  .step { padding: 0 16px 32px; }
+  .hero-title { letter-spacing: 10px; }
+}
+
+.booking-info h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: var(--cream);
+  margin-bottom: 20px;
+}
+
+.booking-detail {
+  display: flex; gap: 14px; align-items: flex-start;
+  margin-bottom: 20px;
+}
+.booking-detail svg {
+  width: 18px; height: 18px; flex-shrink: 0;
+  stroke: var(--teal); fill: none; stroke-width: 1.5;
+  stroke-linecap: round; stroke-linejoin: round;
+  margin-top: 2px;
+}
+.booking-detail p {
+  font-size: 15px;
+  color: var(--cream-dim);
+  line-height: 1.6;
+}
+.booking-detail strong {
+  color: var(--cream);
+  font-weight: 600;
+}
+
+/* Form */
+.form-grid { display: grid; gap: 16px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+label {
+  font-family: 'Cinzel', serif;
+  font-size: 8px;
+  letter-spacing: 2.5px;
+  color: var(--teal);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 6px;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 13px 16px;
+  background: rgba(22,61,86,0.3);
+  border: 1px solid rgba(42,191,170,0.2);
+  border-radius: 2px;
+  color: var(--cream);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  outline: none;
+  transition: border-color .3s, background .3s;
+  -webkit-appearance: none;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: var(--teal);
+  background: rgba(22,61,86,0.4);
+}
+input::placeholder, textarea::placeholder { color: rgba(237,224,196,0.25); }
+select option { background: var(--aegean); color: var(--cream); }
+
+textarea { resize: vertical; min-height: 100px; }
+
+.form-submit {
+  width: 100%;
+  padding: 16px;
+  background: var(--teal);
+  color: var(--dark);
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all .3s;
+  margin-top: 8px;
+}
+.form-submit:hover { background: var(--teal-lt); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(42,191,170,0.25); }
+
+.form-note {
+  font-style: italic;
+  font-size: 12px;
+  color: rgba(237,224,196,0.3);
+  margin-top: 10px;
+}
+
+/* success */
+.form-success {
+  display: none;
+  text-align: center;
+  padding: 40px;
+  border: 1px solid rgba(42,191,170,0.3);
+  border-radius: 4px;
+  background: rgba(42,191,170,0.05);
+}
+.form-success h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 16px;
+  letter-spacing: 2px;
+  color: var(--teal);
+  margin-bottom: 12px;
+}
+.form-success p { font-size: 15px; color: var(--cream-dim); }
+
+/* ══════════════════════════════════
+   QR SECTION
+══════════════════════════════════ */
+#qr-section {
+  background: var(--aegean);
+  padding: 80px 24px;
+  text-align: center;
+}
+
+.qr-wrap {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.qr-box {
+  padding: 20px;
+  background: #fff;
+  border-radius: 4px;
+  border: 3px solid var(--teal);
+  box-shadow: 0 0 30px rgba(42,191,170,0.3);
+}
+
+.qr-label {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: var(--teal);
+  opacity: .7;
+}
+
+/* ══════════════════════════════════
+   FOOTER
+══════════════════════════════════ */
+footer {
+  background: var(--dark);
+  border-top: 1px solid rgba(42,191,170,0.1);
+  padding: 48px 24px;
+  text-align: center;
+}
+
+.footer-logo {
+  font-family: 'Cinzel', serif;
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 8px;
+  color: var(--cream);
+  margin-bottom: 8px;
+}
+.footer-sub {
+  font-family: 'Cinzel', serif;
+  font-size: 8px;
+  letter-spacing: 4px;
+  color: var(--teal);
+  opacity: .6;
+  margin-bottom: 24px;
+}
+
+.footer-links {
+  display: flex; justify-content: center; gap: 32px; flex-wrap: wrap;
+  margin-bottom: 32px; list-style: none;
+}
+.footer-links a {
+  font-family: 'Cinzel', serif;
+  font-size: 8px;
+  letter-spacing: 2px;
+  color: var(--cream-dim);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color .3s;
+}
+.footer-links a:hover { color: var(--teal); }
+
+.footer-copy {
+  font-size: 12px;
+  color: rgba(237,224,196,0.2);
+}
+
+/* ══════════════════════════════════
+   BUSINESS CARDS SECTION
+══════════════════════════════════ */
+#cards {
+  background: linear-gradient(180deg, var(--dark) 0%, var(--aegean) 100%);
+  padding: 100px 24px;
+}
+
+.cards-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+  margin-top: 60px;
+}
+
+.card-label {
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  letter-spacing: 4px;
+  color: var(--teal);
+  opacity: .5;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+/* === FRONT CARD === */
+.bc-front {
+  width: 370px; height: 210px;
+  border-radius: 10px;
+  position: relative; overflow: hidden;
+  background: linear-gradient(145deg, #0C2233 0%, #163D56 60%, #0C2233 100%);
+  box-shadow: 0 0 0 1px rgba(42,191,170,0.25), 0 25px 60px rgba(0,0,0,0.75);
+  animation: fc1 8s ease-in-out infinite;
+}
+@keyframes fc1 {
+  0%,100% { transform: rotateX(2deg) rotateY(-3deg) translateY(0); }
+  50%      { transform: rotateX(-1deg) rotateY(3deg) translateY(-8px); }
+}
+.bc-front::after {
+  content:''; position:absolute; inset:0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity:.4; pointer-events:none; mix-blend-mode:overlay;
+}
+
+.bc-meander {
+  position:absolute; top:0; left:0; right:0; height:14px; opacity:.35;
+}
+.bc-meander-b {
+  position:absolute; bottom:0; left:0; right:0; height:14px; opacity:.35; transform:scaleY(-1);
+}
+.bc-hairline {
+  position:absolute; inset:18px;
+  border:1px solid rgba(42,191,170,0.18); border-radius:4px; pointer-events:none;
+}
+
+.bc-front-body {
+  position:relative; z-index:2;
+  width:100%; height:100%;
+  display:flex; align-items:center; justify-content:center; gap:28px; padding:28px 36px;
+}
+
+.bc-divider-v {
+  width:1px; height:90px;
+  background:linear-gradient(180deg, transparent, rgba(42,191,170,0.4), transparent);
+  flex-shrink:0;
+}
+
+.bc-text { display:flex; flex-direction:column; }
+.bc-brand-main {
+  font-family:'Cinzel', serif; font-size:28px; font-weight:900;
+  letter-spacing:10px; color:var(--cream); line-height:1; margin-bottom:5px;
+}
+.bc-brand-detail {
+  font-family:'Cinzel', serif; font-size:8.5px; font-weight:400;
+  letter-spacing:5px; color:var(--teal); margin-bottom:14px;
+}
+.bc-brand-rule {
+  width:100%; height:1px;
+  background:linear-gradient(90deg, rgba(42,191,170,0.5), transparent);
+  margin-bottom:10px;
+}
+.bc-brand-tag {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:9.5px; color:var(--cream-dim); letter-spacing:1.5px; line-height:1.5;
+}
+
+/* === BACK CARD === */
+.bc-back {
+  width:370px; height:210px;
+  border-radius:10px; position:relative; overflow:hidden;
+  background:linear-gradient(160deg, #0C2233 0%, #163D56 55%, #0A1E2E 100%);
+  box-shadow:0 0 0 1px rgba(42,191,170,0.25), 0 25px 60px rgba(0,0,0,0.75);
+  animation:fc2 8s ease-in-out infinite; animation-delay:.6s;
+}
+@keyframes fc2 {
+  0%,100% { transform:rotateX(-1deg) rotateY(3deg) translateY(0); }
+  50%      { transform:rotateX(2deg) rotateY(-3deg) translateY(-7px); }
+}
+.bc-back::after {
+  content:''; position:absolute; inset:0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity:.4; pointer-events:none; mix-blend-mode:overlay;
+}
+
+.bc-left-bar {
+  position:absolute; left:0; top:0; bottom:0; width:4px;
+  background:linear-gradient(180deg, var(--teal-lt), var(--teal), rgba(42,191,170,0.3));
+}
+.bc-side-meander {
+  position:absolute; left:4px; top:0; bottom:0; width:16px; overflow:hidden; opacity:.2;
+}
+.bc-back-hairline {
+  position:absolute; top:18px; bottom:18px; left:26px; right:16px;
+  border:1px solid rgba(42,191,170,0.14); border-radius:3px; pointer-events:none;
+}
+
+/* QR in back card */
+.bc-qr-zone {
+  position:absolute; right:20px; top:50%; transform:translateY(-50%);
+  display:flex; flex-direction:column; align-items:center; gap:6px; z-index:3;
+}
+.bc-qr-frame {
+  padding:6px; background:#fff; border-radius:3px;
+  border:1.5px solid rgba(42,191,170,0.5);
+  box-shadow:0 0 12px rgba(42,191,170,0.2);
+}
+.bc-qr-scan {
+  font-family:'Cinzel', serif; font-size:5.5px; letter-spacing:2px;
+  color:var(--teal); opacity:.6;
+}
+
+.bc-back-content {
+  position:absolute; left:36px; right:130px;
+  top:0; bottom:0;
+  display:flex; flex-direction:column; justify-content:center;
+  padding:20px 0 20px 16px; gap:6px; z-index:2;
+}
+.bc-name {
+  font-family:'Cinzel', serif; font-size:12px; font-weight:600;
+  letter-spacing:2px; color:var(--cream); margin-bottom:1px;
+}
+.bc-title {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:9.5px; color:var(--teal); letter-spacing:1.5px; margin-bottom:8px; opacity:.85;
+}
+.bc-row { display:flex; align-items:center; gap:8px; }
+.bc-icon {
+  width:10px; height:10px; flex-shrink:0;
+  stroke:var(--teal); opacity:.7; fill:none; stroke-width:1.8;
+  stroke-linecap:round; stroke-linejoin:round;
+}
+.bc-text-sm {
+  font-family:'Cormorant Garamond', serif; font-size:9px;
+  color:rgba(237,224,196,0.65); letter-spacing:.3px;
+}
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav>
+  <a href="#hero" class="nav-logo">
+    <svg width="28" height="35" viewBox="0 0 70 88" fill="none" style="filter:drop-shadow(0 0 8px rgba(42,191,170,0.5))">
+      <path d="M35 3 C30 10 24 14 18 16 C24 15 30 14 35 17 C40 14 46 15 52 16 C46 14 40 10 35 3Z" fill="#2ABFAA" opacity=".9"/>
+      <rect x="33.5" y="15" width="3" height="7" rx="1" fill="#2ABFAA" opacity=".6"/>
+      <path d="M10 42 C10 20 60 20 60 42 L60 54 L10 54 Z" fill="none" stroke="#2ABFAA" stroke-width="1.8"/>
+      <path d="M10 42 L5 58 L18 57 L18 54" fill="none" stroke="#2ABFAA" stroke-width="1.8"/>
+      <path d="M60 42 L65 58 L52 57 L52 54" fill="none" stroke="#2ABFAA" stroke-width="1.8"/>
+      <rect x="18" y="45" width="34" height="9" rx="1" fill="none" stroke="#2ABFAA" stroke-width="1.4" opacity=".6"/>
+      <line x1="27" y1="45" x2="27" y2="54" stroke="#2ABFAA" stroke-width="1" opacity=".4"/>
+      <line x1="35" y1="45" x2="35" y2="54" stroke="#2ABFAA" stroke-width="1" opacity=".4"/>
+      <line x1="43" y1="45" x2="43" y2="54" stroke="#2ABFAA" stroke-width="1" opacity=".4"/>
+      <path d="M18 57 L52 57 L49 66 L21 66 Z" fill="none" stroke="#2ABFAA" stroke-width="1.5" opacity=".7"/>
+    </svg>
+    <div>
+      <div class="nav-logo-text">TROY</div>
+      <div class="nav-logo-sub">DETAIL CO.</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#why">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#booking">Contact</a></li>
+  </ul>
+  <a href="#booking" class="nav-cta">Book Now</a>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section id="hero">
+  <div class="hero-eyebrow">Austin, Texas · Premium Mobile Detailing</div>
+  <div class="hero-helmet">
+    <svg width="72" height="90" viewBox="0 0 70 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M35 3 C30 10 24 14 18 16 C24 15 30 14 35 17 C40 14 46 15 52 16 C46 14 40 10 35 3Z" fill="#2ABFAA" opacity=".9"/>
+      <rect x="33.5" y="15" width="3" height="7" rx="1" fill="#2ABFAA" opacity=".6"/>
+      <path d="M10 42 C10 20 60 20 60 42 L60 54 L10 54 Z" fill="none" stroke="#2ABFAA" stroke-width="1.5"/>
+      <path d="M10 42 L5 58 L18 57 L18 54" fill="none" stroke="#2ABFAA" stroke-width="1.5"/>
+      <path d="M60 42 L65 58 L52 57 L52 54" fill="none" stroke="#2ABFAA" stroke-width="1.5"/>
+      <rect x="18" y="45" width="34" height="9" rx="1" fill="none" stroke="#2ABFAA" stroke-width="1.2" opacity=".6"/>
+      <line x1="27" y1="45" x2="27" y2="54" stroke="#2ABFAA" stroke-width="1" opacity=".4"/>
+      <line x1="35" y1="45" x2="35" y2="54" stroke="#2ABFAA" stroke-width="1" opacity=".4"/>
+      <line x1="43" y1="45" x2="43" y2="54" stroke="#2ABFAA" stroke-width="1" opacity=".4"/>
+      <path d="M18 57 L52 57 L49 66 L21 66 Z" fill="none" stroke="#2ABFAA" stroke-width="1.3" opacity=".7"/>
+      <circle cx="27" cy="61.5" r="1" fill="#2ABFAA" opacity=".4"/>
+      <circle cx="35" cy="61.5" r="1" fill="#2ABFAA" opacity=".4"/>
+      <circle cx="43" cy="61.5" r="1" fill="#2ABFAA" opacity=".4"/>
+      <path d="M22 28 C25 25 30 23 34 24" stroke="rgba(237,224,196,0.35)" stroke-width="1.2" stroke-linecap="round"/>
+    </svg>
+  </div>
+  <h1 class="hero-title">TROY</h1>
+  <div class="hero-sub">DETAIL CO.</div>
+  <div class="hero-divider">
+    <div class="hero-divider-line"></div>
+    <div class="hero-divider-diamond"></div>
+    <div class="hero-divider-line r"></div>
+  </div>
+  <p class="hero-tagline">We bring the detail to your door.<br>Legendary results, wherever you are.</p>
+  <div class="hero-btns">
+    <a href="#booking" class="btn-primary">Book Your Detail</a>
+    <a href="#services" class="btn-ghost">View Packages</a>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<div class="meander-strip"></div>
+
+<!-- ══ WHY TROY ══ -->
+<section id="why">
+  <div class="section-inner">
+    <span class="section-eyebrow">Why Troy Detail</span>
+    <h2 class="section-title">Legendary Care<br>for Your Vehicle</h2>
+    <p class="section-sub">Born in Çanakkale, built in Austin — we bring old-world attention to detail to your doorstep.</p>
+    <div class="why-grid">
+      <div class="why-card">
+        <svg class="why-icon" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <h3>We Come to You</h3>
+        <p>No driving, no waiting in line. We come to your home, office, or wherever your car is parked.</p>
+      </div>
+      <div class="why-card">
+        <svg class="why-icon" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <h3>Premium Products Only</h3>
+        <p>Professional-grade, eco-friendly products. Your paint, leather, and surfaces treated with the respect they deserve.</p>
+      </div>
+      <div class="why-card">
+        <svg class="why-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <h3>Punctual & Reliable</h3>
+        <p>We show up on time, every time. Your schedule is as important to us as the quality of our work.</p>
+      </div>
+      <div class="why-card">
+        <svg class="why-icon" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        <h3>Attention to Every Detail</h3>
+        <p>From the stitching on your seats to the crevices in your dashboard — nothing gets overlooked.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="meander-strip flip"></div>
+
+<!-- ══ SERVICES ══ -->
+<section id="services">
+  <div class="section-inner">
+    <span class="section-eyebrow">Packages & Pricing</span>
+    <h2 class="section-title">Choose Your Package</h2>
+    <p class="section-sub">Transparent pricing. No hidden fees. Final price may vary based on vehicle condition.</p>
+
+    <div class="packages-grid">
+
+      <!-- Package 1 -->
+      <div class="package-card">
+        <div class="package-header">
+          <div class="package-num">Package 01</div>
+          <div class="package-name">Standard Wash & Detail</div>
+          <div class="package-price">
+            <span class="price-from">from</span>
+            <span class="price-sedan">$90<span> sedan</span></span>
+            <span class="price-suv">· $120+ SUV/Truck</span>
+          </div>
+        </div>
+        <div class="package-body">
+          <div class="package-item">Foam Hand Wash & Hand Dry</div>
+          <div class="package-item">Wheel, Tire & Wheel Well Cleaning</div>
+          <div class="package-item">Tire Dressing</div>
+          <div class="package-item">Exterior Glass Cleaning</div>
+          <div class="package-item">Detailed Vacuuming (Seats, Floors, Mats)</div>
+          <div class="package-item">Panel & Door Sill Wipe Down</div>
+        </div>
+        <a href="#booking" class="package-cta ghost">Book Package 1</a>
+        <div style="height:28px"></div>
+      </div>
+
+      <!-- Package 2 -->
+      <div class="package-card featured">
+        <div class="package-badge">Most Popular</div>
+        <div class="package-header">
+          <div class="package-num">Package 02</div>
+          <div class="package-name">Deep Clean Interior & Exterior</div>
+          <div class="package-price">
+            <span class="price-from">from</span>
+            <span class="price-sedan">$190<span> sedan</span></span>
+            <span class="price-suv">· $240+ SUV/Truck</span>
+          </div>
+        </div>
+        <div class="package-body">
+          <div class="package-item">Everything in Package 1</div>
+          <div class="package-item">Seat Shampoo & Deep Vacuum</div>
+          <div class="package-item">Leather Seat Cleaning & Conditioning</div>
+          <div class="package-item">Steam Cleaning (AC Vents & Tight Spaces)</div>
+          <div class="package-item">Spray Wax Paint Protection</div>
+        </div>
+        <a href="#booking" class="package-cta primary">Book Package 2</a>
+        <div style="height:28px"></div>
+      </div>
+
+      <!-- Package 3 -->
+      <div class="package-card">
+        <div class="package-header">
+          <div class="package-num">Package 03</div>
+          <div class="package-name">Premium Protection & Paint Prep</div>
+          <div class="package-price">
+            <span class="price-from">from</span>
+            <span class="price-sedan">$350<span> sedan</span></span>
+            <span class="price-suv">· $425+ SUV/Truck</span>
+          </div>
+        </div>
+        <div class="package-body">
+          <div class="package-item">Everything in Package 2</div>
+          <div class="package-item">Clay Bar Paint Decontamination</div>
+          <div class="package-item">Iron Fallout Removal</div>
+          <div class="package-item">High-Grade Paint Sealant</div>
+          <div class="package-item">Engine Bay Cleaning & Protection</div>
+        </div>
+        <a href="#booking" class="package-cta ghost">Book Package 3</a>
+        <div style="height:28px"></div>
+      </div>
+
+    </div>
+
+    <!-- Add-ons -->
+    <div class="addons-section">
+      <div class="addons-title">Add-On Services</div>
+      <div class="addons-grid">
+        <div class="addon-row"><span class="addon-name">Pet Hair Removal</span><span class="addon-price">+$30 – $70</span></div>
+        <div class="addon-row"><span class="addon-name">Single Car Seat Cleaning</span><span class="addon-price">+$35</span></div>
+        <div class="addon-row"><span class="addon-name">Headliner Cleaning</span><span class="addon-price">+$50</span></div>
+        <div class="addon-row"><span class="addon-name">Ozone Odor Elimination</span><span class="addon-price">+$50</span></div>
+        <div class="addon-row"><span class="addon-name">Biohazard Cleaning</span><span class="addon-price">+$50</span></div>
+        <div class="addon-row"><span class="addon-name">Clay Bar Treatment</span><span class="addon-price">+$50</span></div>
+        <div class="addon-row"><span class="addon-name">Engine Bay Detail</span><span class="addon-price">+$60</span></div>
+        <div class="addon-row"><span class="addon-name">Headlight Restoration (pair)</span><span class="addon-price">+$100</span></div>
+        <div class="addon-row"><span class="addon-name">Light Swirl Mark Removal</span><span class="addon-price">Quote</span></div>
+        <div class="addon-row"><span class="addon-name">Deep Scratch Removal</span><span class="addon-price">Quote</span></div>
+        <div class="addon-row"><span class="addon-name">Mold Removal</span><span class="addon-price">Quote</span></div>
+      </div>
+      <p class="addons-note">* Prices may vary based on vehicle size and condition. Austin, TX metro area mobile service.</p>
+    </div>
+  </div>
+</section>
+
+<div class="meander-strip"></div>
+
+<!-- ══ HOW IT WORKS ══ -->
+<section id="how">
+  <div class="section-inner">
+    <span class="section-eyebrow">The Process</span>
+    <h2 class="section-title">How It Works</h2>
+    <p class="section-sub">Three simple steps to a showroom-ready vehicle.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">I</div>
+        <h3>Book Online</h3>
+        <p>Fill out the form below or scan the QR code. Choose your package, date, and location.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">II</div>
+        <h3>We Come to You</h3>
+        <p>Our detailer arrives at your home, office, or any location in Austin — fully equipped.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">III</div>
+        <h3>Enjoy the Result</h3>
+        <p>Sit back while we work. Your vehicle returned to you spotless, protected, and legendary.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="meander-strip flip"></div>
+
+<!-- ══ BOOKING ══ -->
+<section id="booking">
+  <div class="section-inner">
+    <span class="section-eyebrow">Get in Touch</span>
+    <h2 class="section-title">Book Your Detail</h2>
+    <div class="booking-wrap">
+
+      <div class="booking-info">
+        <h3>Contact Information</h3>
+        <div class="booking-detail">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          <p><strong>(512) 555 – 0198</strong><br>Call or text, we respond fast.</p>
+        </div>
+        <div class="booking-detail">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <p><strong>hello@troydetail.com</strong><br>We reply within a few hours.</p>
+        </div>
+        <div class="booking-detail">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <p><strong>Austin, Texas</strong><br>We serve the greater Austin metro area.</p>
+        </div>
+        <div class="booking-detail">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <p><strong>Mon – Sat, 8am – 6pm</strong><br>Sunday appointments on request.</p>
+        </div>
+      </div>
+
+      <div>
+        <div id="booking-form">
+          <div class="form-grid">
+            <div class="form-row">
+              <div>
+                <label>First Name</label>
+                <input type="text" placeholder="John">
+              </div>
+              <div>
+                <label>Last Name</label>
+                <input type="text" placeholder="Smith">
+              </div>
+            </div>
+            <div>
+              <label>Phone Number</label>
+              <input type="tel" placeholder="(512) 000 – 0000">
+            </div>
+            <div>
+              <label>Email Address</label>
+              <input type="email" placeholder="john@email.com">
+            </div>
+            <div>
+              <label>Service Package</label>
+              <select>
+                <option value="">Select a package...</option>
+                <option>Package 1 — Standard Wash & Detail</option>
+                <option>Package 2 — Deep Clean (Most Popular)</option>
+                <option>Package 3 — Premium Protection & Paint Prep</option>
+                <option>Not sure — help me choose</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <div>
+                <label>Vehicle Type</label>
+                <select>
+                  <option value="">Select...</option>
+                  <option>Sedan / Coupe</option>
+                  <option>SUV / Crossover</option>
+                  <option>Truck</option>
+                  <option>Van / Minivan</option>
+                  <option>Sports Car / Exotic</option>
+                </select>
+              </div>
+              <div>
+                <label>Preferred Date</label>
+                <input type="date">
+              </div>
+            </div>
+            <div>
+              <label>Service Address</label>
+              <input type="text" placeholder="Where should we come?">
+            </div>
+            <div>
+              <label>Additional Notes</label>
+              <textarea placeholder="Any specific concerns, add-ons, or questions?"></textarea>
+            </div>
+            <button class="form-submit" onclick="submitForm()">Send Booking Request</button>
+            <p class="form-note">* We'll confirm your appointment via phone or email within 2 hours.</p>
+          </div>
+        </div>
+        <div class="form-success" id="form-success">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#2ABFAA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:16px"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <h3>Request Received!</h3>
+          <p>Thank you for reaching out. We'll confirm your appointment within 2 hours.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ QR SECTION ══ -->
+<section id="qr-section">
+  <div class="section-inner" style="text-align:center">
+    <span class="section-eyebrow" style="display:block;margin-bottom:14px">Scan & Book</span>
+    <h2 class="section-title" style="margin-bottom:8px">Share This Page</h2>
+    <p class="section-sub" style="margin:0 auto 40px;text-align:center">Scan the QR code to visit Troy Detail Co. — use it on your business card, flyers, or anywhere.</p>
+    <div class="qr-wrap">
+      <div class="qr-box" id="qrcode"></div>
+      <div class="qr-label">www.troydetail.com</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ BUSINESS CARDS ══ -->
+<section id="cards">
+  <div class="section-inner">
+    <span class="section-eyebrow">Business Card</span>
+    <h2 class="section-title">Your Card, Redesigned</h2>
+    <p class="section-sub">Front: clean logo. Back: contact info + QR code to your site.</p>
+
+    <div class="cards-display">
+
+      <!-- FRONT -->
+      <div>
+        <div class="card-label">Front</div>
+        <div class="bc-front">
+          <div class="bc-meander">
+            <svg width="370" height="14" viewBox="0 0 370 14">
+              <defs><pattern id="bcm" x="0" y="0" width="28" height="14" patternUnits="userSpaceOnUse"><path d="M0,12 L0,2 L12,2 L12,7 L7,7 L7,12 L14,12 L14,2 L28,2" fill="none" stroke="#2ABFAA" stroke-width="1.2" stroke-linejoin="round"/></pattern></defs>
+              <rect width="370" height="14" fill="url(#bcm)"/>
+            </svg>
+          </div>
+          <div class="bc-meander-b">
+            <svg width="370" height="14" viewBox="0 0 370 14"><rect width="370" height="14" fill="url(#bcm)"/></svg>
+          </div>
+          <div class="bc-hairline"></div>
+          <div class="bc-front-body">
+            <svg width="58" height="72" viewBox="0 0 70 88" fill="none" style="filter:drop-shadow(0 0 10px rgba(42,191,170,0.5));flex-shrink:0">
+              <path d="M35 3 C30 10 24 14 18 16 C24 15 30 14 35 17 C40 14 46 15 52 16 C46 14 40 10 35 3Z" fill="#2ABFAA" opacity=".9"/>
+              <rect x="33.5" y="15" width="3" height="7" rx="1" fill="#2ABFAA" opacity=".6"/>
+              <path d="M10 42 C10 20 60 20 60 42 L60 54 L10 54 Z" fill="none" stroke="#2ABFAA" stroke-width="1.5"/>
+              <path d="M10 42 L5 58 L18 57 L18 54" fill="none" stroke="#2ABFAA" stroke-width="1.5"/>
+              <path d="M60 42 L65 58 L52 57 L52 54" fill="none" stroke="#2ABFAA" stroke-width="1.5"/>
+              <rect x="18" y="45" width="34" height="9" rx="1" fill="none" stroke="#2ABFAA" stroke-width="1.2" opacity=".6"/>
+              <line x1="27" y1="45" x2="27" y2="54" stroke="#2ABFAA" stroke-width="1" opacity=".4"/>
+              <line x1="35" y1="45" x2="35" y2="54" stroke="#2ABFAA" stroke-width="1" opacity=".4"/>
+              <line x1="43" y1="45" x2="43" y2="54" stroke="#2ABFAA" stroke-width="1" opacity=".4"/>
+              <path d="M18 57 L52 57 L49 66 L21 66 Z" fill="none" stroke="#2ABFAA" stroke-width="1.3" opacity=".7"/>
+              <circle cx="27" cy="61.5" r="1" fill="#2ABFAA" opacity=".4"/>
+              <circle cx="35" cy="61.5" r="1" fill="#2ABFAA" opacity=".4"/>
+              <circle cx="43" cy="61.5" r="1" fill="#2ABFAA" opacity=".4"/>
+            </svg>
+            <div class="bc-divider-v"></div>
+            <div class="bc-text">
+              <div class="bc-brand-main">TROY</div>
+              <div class="bc-brand-detail">DETAIL &nbsp;·&nbsp; CO.</div>
+              <div class="bc-brand-rule"></div>
+              <div class="bc-brand-tag">Mobile Auto Detailing<br>Austin, Texas</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BACK -->
+      <div>
+        <div class="card-label">Back</div>
+        <div class="bc-back">
+          <div class="bc-left-bar"></div>
+          <div class="bc-side-meander">
+            <svg width="16" height="210" viewBox="0 0 16 210">
+              <defs><pattern id="vkm" x="0" y="0" width="16" height="24" patternUnits="userSpaceOnUse"><path d="M1,1 L15,1 L15,10 L7,10 L7,15 L15,15 L15,23" fill="none" stroke="#2ABFAA" stroke-width="1" stroke-linejoin="round"/></pattern></defs>
+              <rect width="16" height="210" fill="url(#vkm)"/>
+            </svg>
+          </div>
+          <div class="bc-back-hairline"></div>
+
+          <div class="bc-back-content">
+            <div class="bc-name">MEHMET YILMAZ</div>
+            <div class="bc-title">Founder & Master Detailer</div>
+            <div class="bc-row">
+              <svg class="bc-icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+              <span class="bc-text-sm">(512) 555 – 0198</span>
+            </div>
+            <div class="bc-row">
+              <svg class="bc-icon" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <span class="bc-text-sm">hello@troydetail.com</span>
+            </div>
+            <div class="bc-row">
+              <svg class="bc-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+              <span class="bc-text-sm">www.troydetail.com</span>
+            </div>
+            <div class="bc-row">
+              <svg class="bc-icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span class="bc-text-sm">Austin, TX · We Come to You</span>
+            </div>
+          </div>
+
+          <!-- QR on card back -->
+          <div class="bc-qr-zone">
+            <div class="bc-qr-frame" id="card-qr"></div>
+            <div class="bc-qr-scan">SCAN TO BOOK</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<div class="meander-strip"></div>
+<footer>
+  <div class="footer-logo">TROY</div>
+  <div class="footer-sub">DETAIL CO. · AUSTIN, TEXAS</div>
+  <ul class="footer-links">
+    <li><a href="#why">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#booking">Book Now</a></li>
+  </ul>
+  <p class="footer-copy">© 2026 Troy Detail Co. All rights reserved. Austin, TX.</p>
+</footer>
+
+<script>
+// ── QR CODES ──
+function makeQR(elementId, size) {
+  new QRCode(document.getElementById(elementId), {
+    text: "https://www.troydetail.com",
+    width: size,
+    height: size,
+    colorDark: "#0D2133",
+    colorLight: "#ffffff",
+    correctLevel: QRCode.CorrectLevel.H
+  });
+}
+makeQR("qrcode", 160);
+makeQR("card-qr", 80);
+
+// ── FORM ──
+function submitForm() {
+  document.getElementById('booking-form').style.display = 'none';
+  document.getElementById('form-success').style.display = 'block';
+}
+
+// ── SCROLL ANIMATIONS ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.why-card, .package-card, .step, .addon-row').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
