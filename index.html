@@ -7,6 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
 <!-- 100% privacy-first analytics -->
 <script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <!-- QR code library -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <style>
@@ -1281,6 +1282,7 @@ footer {
             <label>Additional Notes</label>
             <textarea id="notes" placeholder="Any specific concerns, add-ons, or questions?"></textarea>
           </div>
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAADNBrK5XCfXCv7ZY"></div>
           <button class="form-submit" onclick="submitForm()">Send Booking Request</button>
         </div>
       </div>
@@ -1466,6 +1468,13 @@ async function submitForm() {
   const successMessage = document.getElementById('form-success');
   const submitBtn = document.querySelector('.form-submit');
 
+// Add this right before your formData object
+const turnstileResponse = document.querySelector('[name="cf-turnstile-response"]').value;
+if (!turnstileResponse) {
+    alert("Please wait a moment for the security check to complete.");
+    return;
+}  
+
   // 1. Collect Data using direct IDs (Most Reliable)
   const formData = {
     firstName:   document.getElementById('firstName').value.trim(),
@@ -1476,7 +1485,8 @@ async function submitForm() {
     vehicleType: document.getElementById('vehicleType').value,
     date:        document.getElementById('date').value,
     address:     document.getElementById('address').value.trim(),
-    notes:       document.getElementById('notes').value.trim()
+    notes:       document.getElementById('notes').value.trim(),
+    cf_token:    turnstileResponse
   };
 
   // 2. Validation Check
