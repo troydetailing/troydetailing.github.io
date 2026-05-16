@@ -1385,17 +1385,6 @@ footer {
 </section>
 
 <!-- ══ QR SECTION ══ -->
-<section id="qr-section">
-  <div class="section-inner" style="text-align:center">
-    <span class="section-eyebrow" style="display:block;margin-bottom:14px">Scan & Book</span>
-    <h2 class="section-title" style="margin-bottom:8px">Share This Page</h2>
-    <p class="section-sub" style="margin:0 auto 40px;text-align:center">Scan the QR code to visit Troy Detail Co. — use it on your business card, flyers, or anywhere.</p>
-    <div class="qr-wrap">
-      <div class="qr-box" id="qrcode"></div>
-      <div class="qr-label">www.troydetail.com</div>
-    </div>
-  </div>
-</section>
 
 <!-- ══ BUSINESS CARDS ══ -->
 
@@ -1415,19 +1404,6 @@ footer {
 </footer>
 
 <script>
-// ── QR CODES ──
-function makeQR(elementId, size) {
-  new QRCode(document.getElementById(elementId), {
-    text: "https://www.troydetail.com",
-    width: size,
-    height: size,
-    colorDark: "#0D2133",
-    colorLight: "#ffffff",
-    correctLevel: QRCode.CorrectLevel.H
-  });
-}
-makeQR("qrcode", 160);
-makeQR("card-qr", 80);
 
 // ── FORM ──
 function submitForm() {
